@@ -1,6 +1,6 @@
 {
   "name": "remonit-cli",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "command line tool to use with Remonit dashboards",
   "keywords": [
     "monitoring",

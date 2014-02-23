@@ -22,6 +22,7 @@ var connected = false
 
 var ddp = new DDP({
   host: 'remonit.zef.io',
+  port: 80,
   auto_reconnect: true,
   auto_reconnect_timer: 500,
   use_ejson: true,
