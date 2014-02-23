@@ -10,8 +10,7 @@
 
 var stats = {}
 var name = process.argv[2]
-var lines = []
-var LINES_MAX = 100
+var CHARS_MAX = 5000
 
 if (!name) {
   console.log('Usage: remonit-push <stats_name>\n')
@@ -43,13 +42,7 @@ function init() {
 
     var s = result[0]
     stats = {_id: s._id, userId: s.userId} // we only need these to update stats
-    var value = stats[name] = (s[name] || '') // current stats value
-
-    // separate stats by '\n', so that we can easily tail data
-    lines = value.split('\n')
-
-    // if stats ends with '\n', we will have one trailing empty element
-    if (value[value.length - 1] === '\n') lines.pop()
+    stats[name] = s[name] || '' // current stats value
 
     run()
   })
@@ -58,17 +51,14 @@ function init() {
 var ended = false
 
 function run() {
-  var Lazy = require('lazy')
   var stdin = process.stdin
 
-  new Lazy(stdin)
-  .on('end', function() {
-    finalize()
+  stdin.on('data', function(chunk) {
+    write(chunk.toString())
   })
-  .lines
-  .map(String)
-  .forEach(function(line) {
-    write(line)
+
+  stdin.on('end', function() {
+    finalize()
   })
 
   console.log('Piping to Remonit...\n')
@@ -80,16 +70,13 @@ var updateStats = _.throttle(function() {
   if (!ended) remonit.put('stats', stats)
 }, 1000)
 
-function write(line) {
-  // echo this line
-  console.log(line)
-
-  // add line to lines
-  lines.push(line)
-  lines = lines.slice(-LINES_MAX) // keep last LINES_MAX lines
+function write(data) {
+  // echo
+  process.stdout.write(data)
 
   // update stats
-  stats[name] = lines.join('\n')
+  stats[name] += data
+  stats[name] = stats[name].substr(-CHARS_MAX)
   updateStats()
 }
 

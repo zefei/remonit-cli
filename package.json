@@ -1,6 +1,6 @@
 {
   "name": "remonit-cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "command line tool to use with Remonit dashboards",
   "keywords": [
     "monitoring",
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "ddp": "~0.4.4",
-    "lazy": "*",
     "lodash": "*"
   }
 }
