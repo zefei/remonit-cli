@@ -66,8 +66,9 @@ function run() {
     finalize()
   })
   .lines
+  .map(String)
   .forEach(function(line) {
-    write(line.toString())
+    write(line)
   })
 
   console.log('Piping to Remonit...\n')
