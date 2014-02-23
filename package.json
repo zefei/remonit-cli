@@ -1,0 +1,32 @@
+{
+  "name": "remonit-cli",
+  "version": "0.1.0",
+  "description": "command line tool to use with Remonit dashboards",
+  "keywords": [
+    "monitoring",
+    "sync",
+    "cli"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Zefei Xuan",
+    "email": "zefei.xuan@gmail.com",
+    "url": "http://zef.io/"
+  },
+  "bin": {
+    "remonit-push": "./push.js",
+    "remonit-pull": "./pull.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zefei/remonit-cli.git"
+  },
+  "scripts": {
+    "postinstall": "./postinstall.js"
+  },
+  "dependencies": {
+    "ddp": "~0.4.4",
+    "lazy": "*",
+    "lodash": "*"
+  }
+}
