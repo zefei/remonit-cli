@@ -74,9 +74,11 @@ function write(data) {
   // echo
   process.stdout.write(data)
 
-  // update stats
+  // truncate and update stats
   stats[name] += data
-  stats[name] = stats[name].substr(-CHARS_MAX)
+  if (stats[name].length > 2 * CHARS_MAX) {
+    stats[name] = stats[name].substr(-CHARS_MAX)
+  }
   updateStats()
 }
 
