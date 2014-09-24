@@ -1,7 +1,7 @@
 remonit-cli
 ===========
 
-This is a set of command line tools to be used with [Remonit dashboards](http://zef.io/remonit/), a remote monitoring tool. Mainly, remonit-cli allows user to pipe console output to other devices, like this
+This is a set of command line tools to be used with [Remonit dashboards](https://github.com/zefei/remonit), a remote monitoring tool. Mainly, remonit-cli allows user to pipe console output to other devices, like this
 
 ```
 node server.js | remonit-push 'node server output'
